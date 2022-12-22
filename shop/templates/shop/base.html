@@ -18,11 +18,11 @@
     <a href="{% url 'cart:cart_detail' %}">
     {{ total_items }} item{{ total_items|pluralize }},
     ${{ cart.get_total_price }}
-    </a>
-    {% else %}
-    Your cart is empty.
-    {% endif %}
-    {% endwith %}
+</a>
+{% elif not order %}
+  Your cart is empty.
+{% endif %}
+{% endwith %}
 </div>
 </div>
 <div id="content">
@@ -31,3 +31,5 @@
 </div>
 </body>
 </html>
+Footer
+© 2022 GitHub, Inc.

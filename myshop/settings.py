@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -135,6 +136,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51Jk8lqLhsYBQbrbHw7yfpl7KudTqlMXOwMYVsF8INek5KApfXm72gza3YuCqwwqMuXKYWmDPK9e63h2I0h1Xx5pF00w3H3wCcK'
-STRIPE_SECRET_KEY = 'sk_test_51Jk8lqLhsYBQbrbH7K4F22Pwl91VjRxbADeHPObs4tpFg7U60kFSno3YXOm61GrrVb1Kt8TtpPQdIgSXsvoXuXbw00W6iPbMt8'
-STRIPE_API_VERSION = '2022-08-01'
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_API_VERSION = config('STRIPE_API_VERSION')

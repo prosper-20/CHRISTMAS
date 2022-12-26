@@ -19,3 +19,5 @@ def order_created(order_id):
                           'admin@myshop.com',
                           [order.email])
     return mail_sent
+
+

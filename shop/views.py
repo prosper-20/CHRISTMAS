@@ -12,7 +12,7 @@ def product_list(request, category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
     return render(request,
-                  'product/list.html',
+                  'ogani/index.html', # Changed this from product/list.html to ogani/main.html
                   {'category': category,
                    'categories': categories,
                    'products': products})

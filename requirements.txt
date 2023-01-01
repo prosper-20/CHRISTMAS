@@ -16,6 +16,7 @@ colorama==0.4.6
 cssselect2==0.7.0
 Deprecated==1.2.13
 Django==4.1.4
+django-crispy-forms==1.14.0
 flower==1.1.0
 fonttools==4.38.0
 html5lib==1.1

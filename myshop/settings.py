@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'coupons.apps.CouponsConfig',
     'accounts.apps.AccountsConfig',
+    'crispy_forms'
   
 ]
 
@@ -165,3 +166,5 @@ STRIPE_WEBHOOK_SECRET = config('STRIPE_WEBHOOK_SECRET')
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"

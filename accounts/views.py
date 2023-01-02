@@ -51,9 +51,8 @@ def register(request):
 
 def login(request):
     if request.method == "POST":
-        email = request.POST.get("username")
+        username = request.POST.get("username")
         password = request.POST.get("password")
-        username = email.split('@')[0]
 
         user = auth.authenticate(username=username, password=password)
 

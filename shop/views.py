@@ -27,7 +27,7 @@ def product_detail(request, id, slug):
     r = Recommender()
     recommended_products = r.suggest_products_for([product], 4)
     return render(request,
-                  'product/detail.html',
+                  'ogani/shop-details.html', # Changed this from product/detail.html to ogani/shop-details.html
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'recommended_products': recommended_products})

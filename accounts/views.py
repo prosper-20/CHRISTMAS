@@ -17,7 +17,7 @@ def register(request):
             return redirect('product_list')
     else:
         form = RegisterForm()
-    return render(request, 'accounts/register2.html', {'form': form})
+    return render(request, 'accounts/register.html', {'form': form})
 
 
 

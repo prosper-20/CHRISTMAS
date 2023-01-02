@@ -167,3 +167,6 @@ REDIS_PORT = 6379
 REDIS_DB = 1
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+
+LOGIN_REDIRECT_URL = "product_list"

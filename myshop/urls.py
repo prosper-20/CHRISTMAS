@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +26,8 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace='orders')),
     path('payment/', include('payment.urls', namespace='payment')),
     path('coupons/', include('coupons.urls', namespace='coupons')),
-    path("accounts/", include("accounts.urls"))
+    path("accounts/", include("accounts.urls")),
+    path("main/login/", auth_views.LoginView.as_view(template_name="accounts/login2.html"), name="login2")
 ]
 
 if settings.DEBUG:

@@ -40,8 +40,8 @@ def register(request):
             else:
                 user = User.objects.create_user(username=username, email=email, password=password1)
                 user.save()
-                messages.success(request, f"Hi {email}, your account has been created")
-                return redirect("product_list")
+                messages.success(request, f"Hi {email}, your account has been created, Kindly login below")
+                return redirect("login")
         else:
             messages.info(request, "Password do not match")
             return redirect("signup")
@@ -51,10 +51,11 @@ def register(request):
 
 def login(request):
     if request.method == "POST":
-        email = request.POST.get("email")
+        email = request.POST.get("username")
         password = request.POST.get("password")
+        username = email.split('@')[0]
 
-        user = auth.authenticate(email=email, password=password)
+        user = auth.authenticate(username=username, password=password)
 
         if user is not None:
             auth.login(request, user)
@@ -68,5 +69,8 @@ def login(request):
 
 
 
+def logout(request):
+    auth.logout(request)
+    return redirect("product_list")
 
-
+   

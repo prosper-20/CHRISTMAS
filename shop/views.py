@@ -23,6 +23,7 @@ def product_detail(request, id, slug):
                                 id=id,
                                 slug=slug,
                                 available=True)
+    categories = Category.objects.all()
     cart_product_form = CartAddProductForm()
     r = Recommender()
     recommended_products = r.suggest_products_for([product], 4)
@@ -30,4 +31,5 @@ def product_detail(request, id, slug):
                   'ogani/shop-details.html', # Changed this from product/detail.html to ogani/shop-details.html
                   {'product': product,
                    'cart_product_form': cart_product_form,
+                   'categories': categories,
                    'recommended_products': recommended_products})

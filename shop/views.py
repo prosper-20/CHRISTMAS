@@ -24,6 +24,7 @@ def product_detail(request, id, slug):
                                 slug=slug,
                                 available=True)
     categories = Category.objects.all()
+    related_images = product.related_images
     cart_product_form = CartAddProductForm()
     r = Recommender()
     recommended_products = r.suggest_products_for([product], 4)
@@ -32,4 +33,5 @@ def product_detail(request, id, slug):
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'categories': categories,
+                   'related_images': related_images,
                    'recommended_products': recommended_products})

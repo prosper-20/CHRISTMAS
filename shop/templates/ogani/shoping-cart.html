@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -13,14 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="{% static 'shop/ogani/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'shop/ogani/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'shop/ogani/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'shop/ogani/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'shop/ogani/css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'shop/ogani/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'shop/ogani/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'shop/ogani/css/style.css' %}" type="text/css">
 </head>
 
 <body>
@@ -222,7 +223,7 @@
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="https://files.startupranking.com/startup/thumb/39607_9349f5a7ec7b7e85d174a7a7aa46388001e5c345_supermart-ng_l.png">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -256,29 +257,47 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for item in cart %}
+                                    {% with product=item.product %}
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
+                                        <img height="150" width="200" src="{{ product.image.url }}" alt="">
+                                        <h5>{{ product.name|truncatechars:50 }}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $55.00
+                                        ${{ item.price }}
                                     </td>
-                                    <td class="shoping__cart__quantity">
+                                    <!-- <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
                                                 <input type="text" value="1">
                                             </div>
                                         </div>
-                                    </td>
+                                    </td> -->
+                                    <td>
+                                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                          {{ item.update_quantity_form.quantity }}
+                                          {{ item.update_quantity_form.override }}
+                                          <input type="submit" value="OK">
+                                          {% csrf_token %}
+                                        </form>
+                                      </td>
                                     <td class="shoping__cart__total">
-                                        $110.00
+                                        ${{ item.total_price }}
                                     </td>
-                                    <td class="shoping__cart__item__close">
+                                    <!-- <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
+                                    </td> -->
+                                    <td>
+                                        <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                                          <input type="submit" style="color: red;" value="X">
+                                          {% csrf_token %}
+                                        </form>
                                     </td>
                                 </tr>
-                                <tr>
+                                {% endwith %}
+                                {% endfor %}
+                                <!-- <tr>
                                     <td class="shoping__cart__item">
                                         <img src="img/cart/cart-2.jpg" alt="">
                                         <h5>Fresh Garden Vegetable</h5>
@@ -321,7 +340,7 @@
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -350,8 +369,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Subtotal <span>${{ cart.get_total_price|floatformat:2 }}</span></li>
+                            <li>Total <span>${{ cart.get_total_price_after_discount|floatformat:2 }}</span></li>
                         </ul>
                         <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
@@ -368,12 +387,12 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            <a href="./index.html"><img src="{% static 'shop/ogani/img/logo.png' %}" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
+                            <li>Address: 10 Obe Street, Off Ajao Road</li>
+                            <li>Phone: 0700 123456</li>
+                            <li>Email: hello@csupermart.ng</li>
                         </ul>
                     </div>
                 </div>
@@ -419,7 +438,7 @@
                 <div class="col-lg-12">
                     <div class="footer__copyright">
                         <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                         <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
                     </div>
@@ -430,14 +449,14 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{% static 'shop/ogani/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'shop/ogani/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'shop/ogani/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'shop/ogani/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'shop/ogani/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'shop/ogani/js/mixitup.min.js' %}"></script>
+    <script src="{% static 'shop/ogani/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'shop/ogani/js/main.js' %}"></script>
 
 
 </body>

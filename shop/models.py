@@ -42,9 +42,14 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10,
                                 decimal_places=2)
+    discount_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    latest = models.BooleanField(default=False, blank=True, null=True)
+    top_rated = models.BooleanField(default=False, blank=True, null=True)
+    limited_stock = models.BooleanField(default=False, blank=True, null=True)
+
 
     class Meta:
         ordering = ['name']

@@ -34,6 +34,7 @@ class Product(models.Model):
                                  related_name='products',
                                  on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=200)
     image = models.ImageField(upload_to='products/%Y/%m/%d',
                               blank=True)

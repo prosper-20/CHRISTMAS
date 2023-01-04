@@ -35,3 +35,17 @@ def product_detail(request, id, slug):
                    'categories': categories,
                    'related_images': related_images,
                    'recommended_products': recommended_products})
+
+
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST.get("searched")
+        products = Product.objects.filter(name__contains=searched)
+        context = {
+            "searched": searched,
+            "products": products
+        }
+        return render(request, "product/search.htnl")
+    else: 
+        return render(request, "product/search.html")

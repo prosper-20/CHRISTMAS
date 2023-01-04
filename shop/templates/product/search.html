@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermart | Search</title>
+</head>
+<body>
+    <center>
+        {% if searched %}
+            <h1>You searched for "{{ searched }}"</h1>
+            <br>
+            {% for product in products %}
+                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+            {% endfor %}
+        {% else %}
+            <h1>You forgot to search for an item</h1>
+        {% endif %}
+
+    </center>
+</body>
+</html>

@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'coupons.apps.CouponsConfig',
     'accounts.apps.AccountsConfig',
-    'crispy_forms'
+    'crispy_forms',
+    'ckeditor',
   
 ]
 

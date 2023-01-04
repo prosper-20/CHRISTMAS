@@ -251,6 +251,8 @@
                             <img data-imgbigurl="{{ product.related_images.url }}"
                                 src="{{ product.related_images.url }}" alt="">
                             
+
+                                
                             
                             <!-- <img data-imgbigurl="{% static 'shop/ogani/img/product/details/product-details-2.jpg' %}"
                                 src="{% static 'shop/ogani/img/product/details/thumb-1.jpg' %}" alt="">
@@ -260,6 +262,9 @@
                                 src="{% static 'shop/ogani/img/product/details/thumb-3.jpg' %}" alt="">
                             <img data-imgbigurl="{% static 'shop/ogani/img/product/details/product-details-4.jpg' %}"
                                 src="{% static 'shop/ogani/img/product/details/thumb-4.jpg' %}" alt=""> -->
+                        </div>
+                        <div class="pt-4">
+                            {{ product.specifications| safe}}
                         </div>
                     </div>
                 </div>
@@ -277,7 +282,7 @@
                         </div>
                         <div class="product__details__price"><span>&#8358;</span>
                             {{ product.price }}</div>
-                        <p>{{ product.description }}</p>
+                        <p>{{ product.description| safe }}</p>
                         <!-- <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">

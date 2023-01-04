@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 class Brand(models.Model):
     name = models.CharField(max_length=100)
@@ -39,7 +40,9 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/%Y/%m/%d',
                               blank=True)
     related_images = models.FileField(default="none.jpg", upload_to="related_images")
-    description = models.TextField(blank=True)
+    description = RichTextField(blank=True, null=True)
+    specifications = RichTextField(blank=True, null=True)
+    # description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10,
                                 decimal_places=2)
     discount_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)

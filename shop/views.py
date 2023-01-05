@@ -49,3 +49,49 @@ def search(request):
         return render(request, "product/search.html", context)
     else: 
         return render(request, "product/search.html")
+
+
+def automobile_view(request):
+    products = Product.objects.filter(category_id=10).all()
+    return render(request, 'shop/automobile.html', {"products": products})
+
+def supermarket_view(request):
+    products = Product.objects.filter(category_id=1).all()
+    return render(request, 'shop/supermarket.html', {"products": products})
+
+
+def health_and_beauty_view(request):
+    products = Product.objects.filter(category_id=2).all()
+    return render(request, 'shop/health_and_beauty.html', {"products": products})
+
+def home_and_office_view(request):
+    products = Product.objects.filter(category_id=3).all()
+    return render(request, 'shop/home_and_office.html', {"products": products})
+
+def phones_and_tablets_view(request):
+    products = Product.objects.filter(category_id=4).all()
+    return render(request, 'shop/phones_and_tablets.html', {"products": products})
+
+def computing_view(request):
+    products = Product.objects.filter(category_id=5).all()
+    return render(request, 'shop/computing.html', {"products": products})
+
+def electronics_view(request):
+    products = Product.objects.filter(category_id=6).all()
+    return render(request, 'shop/electronics.html', {"products": products})
+
+def fashion_view(request):
+    products = Product.objects.filter(category_id=7).all()
+    return render(request, 'shop/fashion.html', {"products": products})
+
+def baby_products_view(request):
+    products = Product.objects.filter(category_id=8).all()
+    return render(request, 'shop/baby_products.html', {"products": products})
+
+def gaming_view(request):
+    products = Product.objects.filter(category_id=9).all()
+    return render(request, 'shop/gaming.html', {"products": products})
+
+def other_categories_view(request):
+    products = Product.objects.filter(category_id=11).all()
+    return render(request, 'shop/others.html', {"products": products})

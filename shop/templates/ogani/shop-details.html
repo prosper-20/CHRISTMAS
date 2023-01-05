@@ -56,7 +56,11 @@
                 </ul>
             </div>
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}"><i class="fa fa-user"></i> Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}"><i class="fa fa-user"></i> Login</a>
+                {% endif %}
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -123,7 +127,11 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'logout' %}"><i class="fa fa-user"></i> Logout</a>
+                                {% else %}
+                                <a href="{% url 'login' %}"><i class="fa fa-user"></i> Login</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -167,17 +175,16 @@
                                 {% trans "Your cart" %}:
                                 <a href="{% url 'cart:cart_detail' %}">
                                 {% blocktrans with total=cart.get_total_price count items=total_items %}
-                                    {{ items }} item, ${{ total }}
+                                    {{ items }} item, <span>&#8358;</span>{{ total }}
                                 {% plural %}
-                                    {{ items }} items, ${{ total }}
+                                    {{ items }} items, <span>&#8358;</span>{{ total }}
                                 {% endblocktrans %}
                                 </a>
                             {% elif not order %}
                                 {% trans "Your cart is empty." %}
                             {% endif %}
                             {% endwith %}
-                        </span>
-                            15,000</span></div>
+                        </div>
                     </div>
                 </div>
             </div>

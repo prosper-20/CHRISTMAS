@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-t+_v-idsai&5_e2v^4t7+d2$)8n(687i2q50r9(u6nn4pa3pp7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 CART_SESSION_ID = 'cart'
 
@@ -49,6 +51,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'crispy_forms',
     'ckeditor',
+    'social_django',
+    'django_extensions',
   
 ]
 

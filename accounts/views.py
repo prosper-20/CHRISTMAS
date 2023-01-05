@@ -26,7 +26,7 @@ def register(request):
     if request.method == "POST":
         # username = request.POST.get("username")
         email = request.POST.get("email")
-        password1 = request.POST.get("password1")
+        password1 = request.POST.get("password")
         password2 = request.POST.get("password2")
         username = email.split('@')[0]
 
@@ -49,15 +49,36 @@ def register(request):
 
 
 
+# def login(request):
+#     if request.method == "POST":
+#         username = request.POST.get("username")
+#         password = request.POST.get("password")
+
+#         user = auth.authenticate(username=username, password=password)
+
+#         if user is not None:
+#             auth.login(request, user)
+#             return redirect("product_list")
+#         else:
+#         
+#     messages.info(request, "Credentials Invalid")
+#             return redirect("login")
+
+#     else:
+#         return render(request, "accounts/login.html")
+
 def login(request):
     if request.method == "POST":
-        username = request.POST.get("username")
+        email = request.POST.get("email")
         password = request.POST.get("password")
 
+        username = User.objects.get(email=email.lower()).username
+        print(username)
         user = auth.authenticate(username=username, password=password)
 
         if user is not None:
             auth.login(request, user)
+            messages.success(request, "Successfully logged in")
             return redirect("product_list")
         else:
             messages.info(request, "Credentials Invalid")
@@ -65,6 +86,8 @@ def login(request):
 
     else:
         return render(request, "accounts/login.html")
+
+
 
 
 

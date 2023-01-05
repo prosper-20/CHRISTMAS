@@ -10,10 +10,14 @@
     <center>
         {% if searched %}
             <h1>You searched for "{{ searched }}"</h1>
+            {% if products.count == 0 %}
+                <p>O results found</p>
+            {% else %}
             <br>
             {% for product in products %}
                 <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
             {% endfor %}
+            {% endif %}
         {% else %}
             <h1>You forgot to search for an item</h1>
         {% endif %}

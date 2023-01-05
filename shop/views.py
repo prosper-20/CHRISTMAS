@@ -46,6 +46,6 @@ def search(request):
             "searched": searched,
             "products": products
         }
-        return render(request, "product/search.htnl")
+        return render(request, "product/search.html", context)
     else: 
         return render(request, "product/search.html")

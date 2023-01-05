@@ -216,21 +216,22 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>Others</span>
                         </div>
                         <ul>
-                            <li><a href="{% url 'automobile-view' %}">Automobiles</a></li>
-                            <li><a href="{% url 'supermarket' %}">Supermarket</a></li>
-                            <li><a href="{% url 'health-and-beauty' %}">Health & Beauty</a></li>
-                            <li><a href="{% url 'home-and-office' %}">Home & Office</a></li>
-                            <li><a href="{% url 'phone-and-tablets' %}">Phones & Tablets</a></li>
-                            <li><a href="{% url 'electronics' %}">Electronics</a></li>
-                            <li><a href="{% url 'computing' %}">Computing</a></li>
-                            <li><a href="{% url 'fashion' %}">Fashion</a></li>
-                            <li><a href="{% url 'baby-products' %}">Baby Products</a></li>
-                            <li><a href="{% url 'gaming' %}">Gaming</a></li>
-                            <li><a href="{% url 'other' %}">Other Categories</a></li>
-                        
+                            {% for category in categories %}
+                            <li><a href="#">{{ category }}</a></li>
+                            <!-- <li><a href="#">Vegetables</a></li>
+                            <li><a href="#">Fruit & Nut Gifts</a></li>
+                            <li><a href="#">Fresh Berries</a></li>
+                            <li><a href="#">Ocean Foods</a></li>
+                            <li><a href="#">Butter & Eggs</a></li>
+                            <li><a href="#">Fastfood</a></li>
+                            <li><a href="#">Fresh Onion</a></li>
+                            <li><a href="#">Papayaya & Crisps</a></li>
+                            <li><a href="#">Oatmeal</a></li>
+                            <li><a href="#">Fresh Bananas</a></li> -->
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>

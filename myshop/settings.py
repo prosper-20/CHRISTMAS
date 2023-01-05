@@ -27,9 +27,9 @@ SECRET_KEY = 'django-insecure-t+_v-idsai&5_e2v^4t7+d2$)8n(687i2q50r9(u6nn4pa3pp7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 CART_SESSION_ID = 'cart'
 
@@ -55,6 +55,13 @@ INSTALLED_APPS = [
     'django_extensions',
   
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.google.GoogleOAuth2',
+]
+
+
 
 
 
@@ -165,6 +172,9 @@ STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_API_VERSION = config('STRIPE_API_VERSION')
 STRIPE_WEBHOOK_SECRET = config('STRIPE_WEBHOOK_SECRET')
 
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 # Redis settings
 REDIS_HOST = 'localhost'

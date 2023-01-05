@@ -40,7 +40,22 @@
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            <div class="header__cart__price">
+                {% with total_items=cart|length %}
+                {% if total_items > 0 %}
+                    {% trans "Your cart" %}:
+                    <a href="{% url 'cart:cart_detail' %}">
+                    {% blocktrans with total=cart.get_total_price count items=total_items %}
+                        {{ items }} item, ${{ total }}
+                    {% plural %}
+                        {{ items }} items, ${{ total }}
+                    {% endblocktrans %}
+                    </a>
+                {% elif not order %}
+                    {% trans "Your cart is empty." %}
+                {% endif %}
+                {% endwith %}
+            </div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">

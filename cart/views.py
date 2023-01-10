@@ -48,4 +48,4 @@ def cart_detail(request):
         'coupon_apply_form': coupon_apply_form,
         'recommended_products': recommended_products
     }
-    return render(request, 'ogani/shoping-cart.html', context) #You changed this from cart/detail.html to ogani/shopping-cart.html
+    return render(request, 'cart/detail.html', context) #You changed this from cart/detail.html to ogani/shopping-cart.html

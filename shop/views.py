@@ -12,7 +12,7 @@ def product_list(request, category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
     return render(request,
-                  'ogani/index.html', # Changed this from product/list.html to ogani/main.html
+                  'product/list.html', # Changed this from product/list.html to ogani/main.html
                   {'category': category,
                    'categories': categories,
                    'products': products})
@@ -29,7 +29,7 @@ def product_detail(request, id, slug):
     r = Recommender()
     recommended_products = r.suggest_products_for([product], 4)
     return render(request,
-                  'ogani/shop-details.html', # Changed this from product/detail.html to ogani/shop-details.html
+                  'product/detail.html', # Changed this from product/detail.html to ogani/shop-details.html
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'categories': categories,

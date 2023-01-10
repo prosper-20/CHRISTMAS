@@ -1,23 +1,15 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import OrderItem, Order
-from .forms import OrderCreateForm
-from .tasks import order_created
-from cart.cart import Cart
-from .tasks import order_created
 from django.urls import reverse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 import weasyprint
+from .models import OrderItem, Order
+from .forms import OrderCreateForm
+from .tasks import order_created
+from cart.cart import Cart
 
-
-@staff_member_required
-def admin_order_detail(request, order_id):
-    order = get_object_or_404(Order, id=order_id)
-    return render(request,
-    'admin/orders/order/detail.html',
-    {'order': order})
 
 def order_create(request):
     cart = Cart(request)
@@ -28,7 +20,7 @@ def order_create(request):
             if cart.coupon:
                 order.coupon = cart.coupon
                 order.discount = cart.coupon.discount
-                order.save()
+            order.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
                                         product=item['product'],
@@ -48,6 +40,13 @@ def order_create(request):
                   'orders/order/create.html',
                   {'cart': cart, 'form': form})
 
+
+@staff_member_required
+def admin_order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    return render(request,
+                  'admin/orders/order/detail.html',
+                  {'order': order})
 
 
 @staff_member_required

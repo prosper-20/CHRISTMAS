@@ -4,6 +4,10 @@ from .forms import RegisterForm
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib import auth
+from django.core.mail import EmailMessage, send_mail
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage, send_mail
+from sendgrid.helpers.mail import SandBoxMode, MailSettings
 
 User = get_user_model()
 
@@ -40,6 +44,16 @@ def register(request):
             else:
                 user = User.objects.create_user(username=username, email=email, password=password1)
                 user.save()
+                mydict = {'username': username}
+                html_template = 'accounts/index.html'
+                html_message = render_to_string(html_template, context=mydict)
+                subject = 'Welcome to SuperMart'
+                email_from = settings.DEFAULT_FROM_EMAIL
+                recipient_list = [email]
+                message = EmailMessage(subject, html_message,
+                                    email_from, recipient_list)
+                message.content_subtype = 'html'
+                message.send()
                 messages.success(request, f"Hi {email}, your account has been created, Kindly login below")
                 return redirect("login")
         else:

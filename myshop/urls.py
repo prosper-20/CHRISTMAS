@@ -26,6 +26,7 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace='orders')),
     path('payment/', include('payment.urls', namespace='payment')),
     path('coupons/', include('coupons.urls', namespace='coupons')),
+    path('rosetta/', include('rosetta.urls')),
     path("accounts/", include("accounts.urls")),
     path("main/login/", auth_views.LoginView.as_view(template_name="accounts/login2.html"), name="login2"),
     path('social-auth/', include('social_django.urls', namespace='social')),

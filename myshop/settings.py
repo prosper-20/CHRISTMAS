@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'social_django',
     'django_extensions',
+    'rosetta'
   
 ]
 

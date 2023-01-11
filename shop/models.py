@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from ckeditor.fields import RichTextField
+from parler.models import TranslatableModel, TranslatedFields
 
 class Brand(models.Model):
     name = models.CharField(max_length=100)
@@ -8,17 +9,18 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
-class Category(models.Model):
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200,
-                            unique=True)
-    image = models.ImageField(default="category.png", upload_to="category_image")
+class Category(TranslatableModel):
+    translations = TranslatedFields(
+        name = models.CharField(max_length=200),
+        slug = models.SlugField(max_length=200,
+                                unique=True)
+    )
 
     class Meta:
-        ordering = ['name']
-        indexes = [
-            models.Index(fields=['name']),
-        ]
+        # ordering = ['name']
+        # indexes = [
+        #     models.Index(fields=['name']),
+        # ]
         verbose_name = 'category'
         verbose_name_plural = 'categories'
 

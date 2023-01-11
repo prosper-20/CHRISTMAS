@@ -53,9 +53,23 @@ INSTALLED_APPS = [
     'ckeditor',
     'social_django',
     'django_extensions',
-    'rosetta'
+    'rosetta',
+    'parler',
+    'localflavor',
   
 ]
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en'},
+        {'code': 'es'},
+    ),
+
+    'default': {
+    'fallback': 'en',
+    'hide_untranslated': False,
+    }
+}
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

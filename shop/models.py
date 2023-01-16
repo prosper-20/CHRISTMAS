@@ -32,17 +32,20 @@ class Category(TranslatableModel):
                        args=[self.slug])
 
 
-class Product(models.Model):
+class Product(TranslatableModel):
+    translations = TranslatedFields(
+        name = models.CharField(max_length=200),
+        slug = models.SlugField(max_length=200),
+        description = RichTextField(blank=True, null=True)
+    )
     category = models.ForeignKey(Category,
                                  related_name='products',
                                  on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=200)
     image = models.ImageField(upload_to='products/%Y/%m/%d',
                               blank=True)
     related_images = models.FileField(default="none.jpg", upload_to="related_images")
-    description = RichTextField(blank=True, null=True)
+    
     specifications = RichTextField(blank=True, null=True)
     # description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10,
@@ -57,10 +60,10 @@ class Product(models.Model):
 
 
     class Meta:
-        ordering = ['name']
+        # ordering = ['name']
         indexes = [
-            models.Index(fields=['id', 'slug']),
-            models.Index(fields=['name']),
+            # models.Index(fields=['id', 'slug']),
+            # models.Index(fields=['name']),
             models.Index(fields=['-created']),
         ]
 

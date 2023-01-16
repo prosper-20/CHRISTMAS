@@ -27,7 +27,6 @@ def product_detail(request, id, slug):
                                 id=id,
                                 translations__language_code=language,
                                 translations__slug=slug,
-                                slug=slug,
                                 available=True)
     categories = Category.objects.all()
     related_images = product.related_images

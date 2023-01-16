@@ -9,6 +9,27 @@ from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from .tasks import order_created
 from cart.cart import Cart
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def order_view(request):
+    user_email = request.user.email
+    my_orders = Order.objects.filter(email=user_email).count()
+    # order_count = []
+    # for orders in my_order:
+    #     if orders.paid == True:
+    #         order_count.append("true")
+    # num_of_orders = len(order_count)
+    # context = {
+    #     "num_of_orders": num_of_orders
+    # }
+    context = {
+        "my_orders": my_orders
+    }
+    return render(request, "orders/order/demo.html", context)
+
+
 
 
 def order_create(request):

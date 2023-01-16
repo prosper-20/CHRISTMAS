@@ -1,0 +1,26 @@
+<h1>Login Now</h1>
+
+
+<div class="col-md-8">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Email or Username:</p>
+    <input type="text" name="email" required_id="id_email">
+    <P>Password:</P>
+    <input type="password" name="password" required_id="id_password">
+    <input type="submit">
+</form>
+
+    <a href="{% url 'social:begin' 'google-oauth2' %}">
+    Sign in with Google
+    </a>

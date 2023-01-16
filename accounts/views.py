@@ -102,6 +102,29 @@ def login(request):
         return render(request, "accounts/login.html")
 
 
+def login3(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        if "@" in email:
+            print("True")
+            username = User.objects.get(email=email.lower()).username
+            user = auth.authenticate(username=username, password=password)
+        else:
+            user = auth.authenticate(username=email, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, "Successfully logged in")
+            return redirect("product_list")
+        else:
+            messages.info(request, "Credentials Invalid")
+            return redirect("login")
+
+    else:
+        return render(request, "accounts/login3.html")
+
 
 
 

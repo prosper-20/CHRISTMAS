@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>You have {{ my_orders }} completed order(s)</h2>
+
+    <table>
+        <tr>
+          <th>Created</th>
+          <td>{{ order.created }}</td>
+        </tr>
+        <tr>
+          <th>Customer</th>
+          <td>{{ my_orders.first_name }} {{ my_orders.last_name }}</td>
+        </tr>
+        <tr>
+          <th>E-mail</th>
+          <td><a href="mailto:{{ order.email }}">{{ my_orders.email }}</a></td>
+        </tr>
+        <tr>
+          <th>Address</th>
+        <td>
+          {{ order.address }},
+          {{ order.postal_code }} {{ order.city }}
+        </td>
+        </tr>
+        <tr>
+          <th>Total amount</th>
+          <td>${{ order.get_total_cost }}</td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td>{% if order.paid %}Paid{% else %}Pending payment{% endif %}</td>
+        </tr>
+        <table>
+    </table>
+</body>
+</html>
